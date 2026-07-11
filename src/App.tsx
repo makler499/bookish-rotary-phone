@@ -6,6 +6,7 @@ import { Goals } from './components/Goals';
 import { TheoryMap } from './components/TheoryMap';
 import { CausesSection } from './components/CausesSection';
 import { Timeline } from './components/Timeline';
+import { VisualGallery } from './components/VisualGallery';
 import { PhilosophySection } from './components/PhilosophySection';
 import { PsychologySection } from './components/PsychologySection';
 import { MediaCulture } from './components/MediaCulture';
@@ -46,6 +47,17 @@ export default function App() {
     return () => observer.disconnect();
   }, [sectionIds]);
 
+  useEffect(() => {
+    const hashId = window.location.hash.slice(1);
+    if (!hashId || !sectionIds.includes(hashId)) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      document.getElementById(hashId)?.scrollIntoView();
+    });
+  }, [sectionIds]);
+
   return (
     <>
       <Header activeSection={activeSection} />
@@ -56,6 +68,7 @@ export default function App() {
         <TheoryMap />
         <CausesSection />
         <Timeline />
+        <VisualGallery />
         <PhilosophySection />
         <PsychologySection />
         <MediaCulture />

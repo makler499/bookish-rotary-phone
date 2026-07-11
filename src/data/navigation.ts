@@ -7,6 +7,7 @@ export const navigationItems: NavigationItem[] = [
   { id: 'theory', label: 'База' },
   { id: 'causes', label: 'Причины' },
   { id: 'timeline', label: 'Шкала' },
+  { id: 'gallery', label: 'Галерея' },
   { id: 'philosophy', label: 'Философия' },
   { id: 'psychology', label: 'Психология' },
   { id: 'twentieth', label: 'XX век' },

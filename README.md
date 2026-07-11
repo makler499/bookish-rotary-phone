@@ -7,6 +7,7 @@
 - PDF `Наполнение сайта.pdf` использован как обязательный источник полного психологического контента: Фрейд, Фрай, Блейхер и Крук, Домбровская, Козинцев, анекдоты-иллюстрации и разборы.
 - Gamma-презентация `https://copy-of--xpl2sh2.gamma.site/` использована как источник исследовательской структуры, списка разделов, команды и библиографии.
 - Hero/OG-изображение `public/assets/hero-from-engraving-to-meme.png` сгенерировано для проекта в концепции «от гравюры к мему».
+- Изображения галереи `public/assets/freud-halberstadt.jpg`, `kant-engraving.jpg`, `bergson-nobel.jpg`, `chaplin-the-kid.jpg`, `duchamp-fountain.jpg` взяты из Wikimedia Commons/Public domain; подписи и атрибуция указаны в разделе «Галерея».
 
 ## Запуск
 
