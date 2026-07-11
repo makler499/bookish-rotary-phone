@@ -37,21 +37,21 @@ export const visualSources = [
   {
     title: 'Театральный портал',
     label: 'маска и сцена',
-    image: '/assets/theater-portal-illustration.png',
+    image: '/assets/theater-portal-illustration.jpg',
     alt: 'Художественная иллюстрация театрального портала с масками и гравюрными фрагментами',
     caption: 'Сцена показывает юмор как вход в особое пространство, где правила можно перевернуть и увидеть заново.'
   },
   {
     title: 'Мастерская сатиры',
     label: 'печатная культура',
-    image: '/assets/satirical-print-workshop.png',
+    image: '/assets/satirical-print-workshop.jpg',
     alt: 'Художественная иллюстрация мастерской сатирической печати с литографией и лампой',
     caption: 'Газетная сатира делает смех публичным инструментом: изображение начинает спорить с властью и привычкой.'
   },
   {
     title: 'Цифровой архив',
     label: 'мем и сеть',
-    image: '/assets/digital-meme-archive.png',
+    image: '/assets/digital-meme-archive.jpg',
     alt: 'Художественная иллюстрация тёмного цифрового архива с экранами и золотыми связями',
     caption: 'Мемы живут как сеть повторов: один образ быстро меняет контекст, тон и аудиторию.'
   }
