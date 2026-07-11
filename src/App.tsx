@@ -14,7 +14,6 @@ import { ModernHumor } from './components/ModernHumor';
 import { FunctionsAndConstants } from './components/FunctionsAndConstants';
 import { ComparisonConclusion } from './components/ComparisonConclusion';
 import { ProjectTeam } from './components/ProjectTeam';
-import { Bibliography } from './components/Bibliography';
 import { Footer } from './components/Footer';
 import { navigationItems } from './data/navigation';
 
@@ -76,7 +75,6 @@ export default function App() {
         <FunctionsAndConstants />
         <ComparisonConclusion />
         <ProjectTeam />
-        <Bibliography />
       </main>
       <Footer />
     </>

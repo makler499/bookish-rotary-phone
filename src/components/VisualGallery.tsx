@@ -1,4 +1,3 @@
-import { Image } from 'lucide-react';
 import { visualSources } from '../data/visuals';
 import { SectionShell } from './SectionShell';
 
@@ -6,9 +5,9 @@ export function VisualGallery() {
   return (
     <SectionShell
       id="gallery"
-      eyebrow="06 / визуальный архив"
+      eyebrow="06 / визуальный портал"
       title="Фотографии и изображения"
-      lead="Новый визуальный слой связывает философов, психологов, кино и искусство с исследовательской линией сайта: от портрета и гравюры к экранному и музейному жесту."
+      lead="Галерея собирает лица, сцены и метафоры разных эпох: от театральной маски и сатирической печати до кино и цифрового архива."
     >
       <div className="visual-gallery">
         {visualSources.map((item, index) => (
@@ -20,10 +19,6 @@ export function VisualGallery() {
               <p className="eyebrow">{item.label}</p>
               <h3>{item.title}</h3>
               <p>{item.caption}</p>
-              <span>
-                <Image size={14} aria-hidden="true" />
-                {item.source}
-              </span>
             </figcaption>
           </figure>
         ))}

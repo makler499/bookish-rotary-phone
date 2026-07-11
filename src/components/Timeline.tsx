@@ -14,9 +14,9 @@ export function Timeline() {
   return (
     <SectionShell
       id="timeline"
-      eyebrow="05 / интерактивная шкала"
+      eyebrow="05 / эпохи"
       title="XVII-XXI века: как меняется смеющийся человек"
-      lead="Выбор эпохи меняет акцент, визуальный язык и исследовательский фокус: от гравюры и салонной сатиры до цифрового мема."
+      lead="Каждая эпоха даёт смеху свой носитель, темп и адресата: от гравюры и салонной сатиры до кино, стендапа и цифрового мема."
       className="timeline-section"
     >
       <div className="timeline-tabs" role="tablist" aria-label="Выбор эпохи">

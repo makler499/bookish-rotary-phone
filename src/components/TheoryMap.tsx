@@ -10,9 +10,9 @@ export function TheoryMap() {
   return (
     <SectionShell
       id="theory"
-      eyebrow="03 / карта источников"
-      title="Теоретическая база"
-      lead="Философия, психология, культура и медиа соединяются в одну исследовательскую карту: от карнавального смеха до мемов и симулякров."
+      eyebrow="03 / карта смыслов"
+      title="Теории, через которые виден юмор"
+      lead="Философия, психология, культура и медиа дают разные оптики: от карнавального смеха до защитных механизмов, кино и симулякров."
     >
       <div className="theory-map">
         <div className="theory-constellation" aria-label="Карта направлений">
@@ -29,7 +29,7 @@ export function TheoryMap() {
         </div>
         <article className="theory-detail" aria-live="polite">
           <Network aria-hidden="true" />
-          <p className="eyebrow">активный узел</p>
+          <p className="eyebrow">выбранная оптика</p>
           <h3>{activeNode.title}</h3>
           <p className="authors-line">{activeNode.authors}</p>
           <p>{activeNode.description}</p>

@@ -6,12 +6,12 @@ export function ProjectTeam() {
     <SectionShell
       id="team"
       eyebrow="12 / авторы"
-      title="Команда проекта"
-      lead="Сведения перенесены из презентации Gamma; написание фамилий и инициалов сохранено по источнику."
+      title="Авторы"
+      lead="Над сайтом работала команда Московского института психоанализа; кураторская рамка удерживает связь философии, психологии и культуры."
     >
       <div className="team-layout">
         <article className="curator-panel">
-          <p className="eyebrow">куратор студенческого проекта</p>
+          <p className="eyebrow">куратор</p>
           <h3>{curator}</h3>
           <span>2026</span>
         </article>
