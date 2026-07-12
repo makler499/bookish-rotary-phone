@@ -1,8 +1,40 @@
-node_modules
-dist
-work
-outputs
-.DS_Store
-*.local
-*.log
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+coverage/
 *.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local workspace and generated artifacts
+work/
+outputs/
+tmp/
+temp/
+*.tmp
+*.temp
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini

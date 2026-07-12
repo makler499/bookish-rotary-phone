@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit -p tsconfig.json && vite build && node scripts/prepare-sites-worker.mjs",
+    "lint": "eslint . --max-warnings=0",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json"
@@ -19,8 +20,12 @@
     "vite": "^6.0.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.31.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "eslint": "^9.31.0",
+    "globals": "^15.15.0",
+    "typescript-eslint": "^8.37.0",
     "vitest": "^2.1.8"
   }
 }
