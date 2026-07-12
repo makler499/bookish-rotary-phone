@@ -59,6 +59,15 @@ pnpm build
 
 Собранные файлы появляются в `dist/`.
 
+## Публичная версия
+
+Сайт опубликован по адресу:
+
+https://makler499.github.io/bookish-rotary-phone/
+
+Публикация выполняется автоматически через GitHub Actions после каждого push в ветку `main`.
+Workflow собирает Vite-проект и публикует содержимое папки `dist/` через GitHub Pages.
+
 ## Предпросмотр production-сборки
 
 ```bash

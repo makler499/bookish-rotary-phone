@@ -236,7 +236,11 @@ function AppContent() {
       <Header activeSection={activeSection} />
       <main>
         <section id="hero" className="service-hero" aria-labelledby="hero-title">
-          <div className="hero-bg" aria-hidden="true" />
+          <div
+            className="hero-bg"
+            style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/hero-human-humor-v2.png)` }}
+            aria-hidden="true"
+          />
           <div className="service-hero-overlay" aria-hidden="true" />
           <div className="service-hero-content">
             <p className="hero-kicker">Юмор как инструмент самопомощи и поддержки</p>

@@ -209,7 +209,6 @@ ol {
 }
 
 .hero-bg {
-  background-image: url("/assets/hero-human-humor-v2.png");
   background-size: cover;
   background-position: center;
   transform: scale(1.02);
