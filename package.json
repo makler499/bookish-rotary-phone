@@ -7,6 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit -p tsconfig.json && vite build && node scripts/prepare-sites-worker.mjs",
     "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5"
+    "@types/react-dom": "^18.3.5",
+    "vitest": "^2.1.8"
   }
 }

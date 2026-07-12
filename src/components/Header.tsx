@@ -12,7 +12,7 @@ export function Header({ activeSection }: HeaderProps) {
   return (
     <header className="site-header">
       <a className="brand-mark" href="#hero" aria-label="К началу сайта">
-        <span className="brand-glyph" aria-hidden="true">H</span>
+        <span className="brand-glyph" aria-hidden="true">Ю</span>
         <span>Юмор во времени</span>
       </a>
       <button

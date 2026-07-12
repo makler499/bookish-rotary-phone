@@ -3,51 +3,104 @@ export type NavigationItem = {
   label: string;
 };
 
-export type Era = {
+export type Audience =
+  | 'self'
+  | 'psychologist'
+  | 'group'
+  | 'couple'
+  | 'teen'
+  | 'adult';
+
+export type EmotionalState =
+  | 'anxiety'
+  | 'stress'
+  | 'fatigue'
+  | 'lowMood'
+  | 'awkwardness'
+  | 'mistakeFear'
+  | 'conflict'
+  | 'selfCriticism'
+  | 'tension'
+  | 'loneliness';
+
+export type PracticeGoal =
+  | 'reduceTension'
+  | 'reframe'
+  | 'softenSelfCriticism'
+  | 'buildContact'
+  | 'expressEmotion'
+  | 'prepareConversation'
+  | 'restoreResource';
+
+export type Difficulty = 'easy' | 'medium' | 'advanced';
+
+export type Practice = {
   id: string;
-  label: string;
+  slug: string;
   title: string;
-  accent: string;
-  visual: string;
-  authors: string[];
-  forms: string[];
-  functions: string[];
-  human: string;
-  quote: string;
-  example: string;
+  shortDescription: string;
+  audience: Audience[];
+  emotionalStates: EmotionalState[];
+  goals: PracticeGoal[];
+  durationMinutes: number;
+  difficulty: Difficulty;
+  steps: string[];
+  example?: string;
+  benefits: string[];
+  cautions: string[];
+  contraindications: string[];
+  psychologistNotes?: string[];
+  sourceReferences?: string[];
 };
 
-export type TheoryNode = {
-  id: string;
+export type HumorStyle =
+  | 'supportive'
+  | 'selfIrony'
+  | 'social'
+  | 'defensive'
+  | 'aggressive'
+  | 'avoidant'
+  | 'devaluing';
+
+export type HumorStyleResult = {
+  id: HumorStyle;
   title: string;
-  authors: string;
   description: string;
-  column: 'culture' | 'philosophy' | 'psychology' | 'media';
+  strengths: string[];
+  risks: string[];
+  recommendations: string[];
+  practiceSlugs: string[];
 };
 
-export type PhilosophyTheory = {
-  name: string;
-  thesis: string;
-  detail: string;
-};
-
-export type PsychologyJoke = {
-  title: string;
-  text: string[];
-  analysis: string;
-};
-
-export type PsychologyTheory = {
+export type HumorStyleQuestion = {
   id: string;
-  author: string;
-  title: string;
-  thesis: string;
-  paragraphs: string[];
-  jokes: PsychologyJoke[];
+  text: string;
+  answers: Array<{
+    text: string;
+    style: HumorStyle;
+  }>;
 };
 
-export type BibliographyItem = {
-  id: number;
-  category: 'Философские и теоретические' | 'Психологические и антропологические' | 'Художественные тексты и киноматериалы';
-  text: string;
+export type PsychologistTool = {
+  id: string;
+  title: string;
+  clientStates: EmotionalState[];
+  ageGroups: Array<'teen' | 'adult' | 'mixed'>;
+  sessionGoals: PracticeGoal[];
+  formats: Array<'individual' | 'group' | 'couple'>;
+  humorLevel: 'low' | 'medium' | 'high';
+  description: string;
+  sessionCards: string[];
+  safePhrases: string[];
+  unsafePhrases: string[];
+  readinessQuestions: string[];
+  ethics: string[];
+};
+
+export type HistoryPeriod = {
+  id: string;
+  period: string;
+  title: string;
+  summary: string;
+  practicalTakeaway: string;
 };

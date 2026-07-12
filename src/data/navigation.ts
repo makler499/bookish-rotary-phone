@@ -2,17 +2,13 @@ import type { NavigationItem } from '../types';
 
 export const navigationItems: NavigationItem[] = [
   { id: 'hero', label: 'Начало' },
-  { id: 'hypothesis', label: 'Тезис' },
-  { id: 'goals', label: 'Маршрут' },
-  { id: 'theory', label: 'База' },
-  { id: 'causes', label: 'Причины' },
-  { id: 'timeline', label: 'Шкала' },
-  { id: 'gallery', label: 'Галерея' },
-  { id: 'philosophy', label: 'Философия' },
-  { id: 'psychology', label: 'Психология' },
-  { id: 'twentieth', label: 'XX век' },
-  { id: 'modern', label: 'Сегодня' },
-  { id: 'functions', label: 'Функции' },
-  { id: 'comparison', label: 'Итоги' },
-  { id: 'team', label: 'Авторы' }
+  { id: 'scenarios', label: 'Сценарии' },
+  { id: 'self-help', label: 'Самопомощь' },
+  { id: 'finder', label: 'Подбор' },
+  { id: 'practices', label: 'Практики' },
+  { id: 'psychologists', label: 'Психологам' },
+  { id: 'style-test', label: 'Тест' },
+  { id: 'safety', label: 'Безопасность' },
+  { id: 'history', label: 'История' },
+  { id: 'sources', label: 'Источники' }
 ];
