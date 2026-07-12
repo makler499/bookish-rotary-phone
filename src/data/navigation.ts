@@ -5,6 +5,7 @@ export const navigationItems: NavigationItem[] = [
   { id: 'scenarios', label: 'Сценарии' },
   { id: 'self-help', label: 'Самопомощь' },
   { id: 'finder', label: 'Подбор' },
+  { id: 'examples', label: 'Примеры' },
   { id: 'practices', label: 'Практики' },
   { id: 'psychologists', label: 'Психологам' },
   { id: 'style-test', label: 'Тест' },

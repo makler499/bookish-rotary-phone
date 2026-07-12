@@ -1,4 +1,15 @@
-import type { Audience, EmotionalState, HumorStyle, Practice, PracticeGoal } from '../types';
+import type {
+  Audience,
+  CulturalExample,
+  CulturalExampleEra,
+  CulturalExampleType,
+  CulturalTask,
+  CulturalTechnique,
+  EmotionalState,
+  HumorStyle,
+  Practice,
+  PracticeGoal
+} from '../types';
 
 export type PracticeSelection = {
   audience?: Audience;
@@ -71,4 +82,45 @@ export function calculateDominantStyle(answers: HumorStyle[]): HumorStyle {
   });
 
   return Object.entries(totals).sort((a, b) => b[1] - a[1])[0][0] as HumorStyle;
+}
+
+export type CulturalExampleSelection = {
+  type?: CulturalExampleType;
+  era?: CulturalExampleEra;
+  technique?: CulturalTechnique;
+  task?: CulturalTask;
+};
+
+export function examplesForPractice(examples: CulturalExample[], practiceSlug: string): CulturalExample[] {
+  return examples.filter((example) => example.practiceSlug === practiceSlug);
+}
+
+export function featuredExamplesForPractice(examples: CulturalExample[], practiceSlug: string): CulturalExample[] {
+  const related = examplesForPractice(examples, practiceSlug);
+  const literature = related.find((example) => example.type === 'literature');
+  const film = related.find((example) => example.type === 'film');
+
+  return [literature, film].filter((example): example is CulturalExample => Boolean(example));
+}
+
+export function filterCulturalExamples(
+  examples: CulturalExample[],
+  selection: CulturalExampleSelection
+): CulturalExample[] {
+  return examples.filter((example) => {
+    const typeMatches = !selection.type || example.type === selection.type;
+    const eraMatches = !selection.era || example.era === selection.era;
+    const techniqueMatches = !selection.technique || example.technique === selection.technique;
+    const taskMatches = !selection.task || example.task === selection.task;
+
+    return typeMatches && eraMatches && techniqueMatches && taskMatches;
+  });
+}
+
+export function validateCulturalExampleLinks(examples: CulturalExample[], practices: Practice[]): string[] {
+  const practiceSlugs = new Set(practices.map((practice) => practice.slug));
+
+  return examples
+    .filter((example) => !practiceSlugs.has(example.practiceSlug))
+    .map((example) => example.id);
 }

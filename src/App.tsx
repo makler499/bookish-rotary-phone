@@ -17,7 +17,13 @@ import {
   Sparkles,
   Stethoscope
 } from 'lucide-react';
+import {
+  CulturalExampleCard,
+  CulturalExamplesSection,
+  ExamplesFilters
+} from './components/CulturalExamples';
 import { Header } from './components/Header';
+import { culturalExamples } from './data/culturalExamples';
 import {
   audienceLabels,
   durationOptions,
@@ -32,8 +38,25 @@ import {
   stateLabels
 } from './data/service';
 import { navigationItems } from './data/navigation';
-import { calculateDominantStyle, filterPractices, recommendPractices } from './lib/serviceLogic';
-import type { Audience, EmotionalState, HumorStyle, PracticeGoal } from './types';
+import {
+  calculateDominantStyle,
+  examplesForPractice,
+  filterCulturalExamples,
+  filterPractices,
+  recommendPractices
+} from './lib/serviceLogic';
+import type {
+  Audience,
+  CulturalExample,
+  CulturalExampleEra,
+  CulturalExampleType,
+  CulturalTask,
+  CulturalTechnique,
+  EmotionalState,
+  HumorStyle,
+  Practice,
+  PracticeGoal
+} from './types';
 
 const audienceOptions = Object.keys(audienceLabels) as Audience[];
 const stateOptions = Object.keys(stateLabels) as EmotionalState[];
@@ -63,6 +86,12 @@ const scenarios = [
     text: 'Небольшой тест показывает сильные стороны, риски и подходящие упражнения.',
     href: '#style-test',
     icon: ClipboardList
+  },
+  {
+    title: 'Увидеть прием на примере',
+    text: 'Короткие сцены из книг и кино показывают, как техника работает до упражнения.',
+    href: '#examples',
+    icon: BookOpen
   }
 ];
 
@@ -117,9 +146,17 @@ function PillButton({
   );
 }
 
-function PracticeCard({ practice, compact = false }: { practice: (typeof practices)[number]; compact?: boolean }) {
+function PracticeCard({
+  practice,
+  compact = false,
+  culturalExamples: practiceExamples = []
+}: {
+  practice: Practice;
+  compact?: boolean;
+  culturalExamples?: CulturalExample[];
+}) {
   return (
-    <article className={compact ? 'practice-card compact-card' : 'practice-card'}>
+    <article id={`practice-${practice.slug}`} className={compact ? 'practice-card compact-card' : 'practice-card'}>
       <div className="card-topline">
         <span>{practice.durationMinutes} мин</span>
         <span>{practice.difficulty === 'easy' ? 'легко' : practice.difficulty === 'medium' ? 'средне' : 'глубже'}</span>
@@ -143,6 +180,7 @@ function PracticeCard({ practice, compact = false }: { practice: (typeof practic
             ))}
           </ol>
           {practice.example && <p className="example-line">{practice.example}</p>}
+          <CulturalExamplesSection examples={practiceExamples} practice={practice} />
           <div className="caution-box">
             <strong>Когда лучше не применять</strong>
             <ul>
@@ -171,6 +209,12 @@ function AppContent() {
   const [catalogState, setCatalogState] = useState<EmotionalState | undefined>();
   const [catalogGoal, setCatalogGoal] = useState<PracticeGoal | undefined>();
   const [catalogTime, setCatalogTime] = useState<number | undefined>();
+  const [exampleFilters, setExampleFilters] = useState<{
+    type?: CulturalExampleType;
+    era?: CulturalExampleEra;
+    technique?: CulturalTechnique;
+    task?: CulturalTask;
+  }>({});
   const [psyState, setPsyState] = useState<EmotionalState>('anxiety');
   const [psyGoal, setPsyGoal] = useState<PracticeGoal>('buildContact');
   const [answers, setAnswers] = useState<Record<string, HumorStyle>>({});
@@ -217,6 +261,8 @@ function AppContent() {
     goal: catalogGoal,
     maxMinutes: catalogTime
   });
+  const practiceBySlug = useMemo(() => new Map(practices.map((practice) => [practice.slug, practice])), []);
+  const filteredExamples = filterCulturalExamples(culturalExamples, exampleFilters);
   const psychologistMatches = psychologistTools.filter(
     (tool) => tool.clientStates.includes(psyState) || tool.sessionGoals.includes(psyGoal)
   );
@@ -262,6 +308,10 @@ function AppContent() {
                 <SlidersHorizontal size={18} />
                 Подобрать практику
               </a>
+              <a className="button button-ghost" href="#examples">
+                <BookOpen size={18} />
+                Примеры из книг и кино
+              </a>
             </div>
             <div className="hero-service-strip" aria-label="Что есть на сайте">
               <span>короткие упражнения</span>
@@ -291,6 +341,21 @@ function AppContent() {
             })}
           </div>
         </Section>
+
+        <section className="examples-cta" aria-labelledby="examples-cta-title">
+          <div>
+            <p className="eyebrow">Техника в действии</p>
+            <h2 id="examples-cta-title">Посмотрите, как юмор работает в книгах и кино</h2>
+            <p>
+              Иногда технику легче понять на знакомой истории. Мы собрали короткие примеры из литературы и фильмов
+              и связали их с практическими упражнениями.
+            </p>
+          </div>
+          <div className="examples-cta-actions">
+            <a className="button button-primary" href="#examples">Смотреть примеры</a>
+            <a className="button button-secondary" href="#practices">Перейти к упражнениям</a>
+          </div>
+        </section>
 
         <Section
           id="self-help"
@@ -343,7 +408,11 @@ function AppContent() {
               </div>
               <div className="practice-list">
                 {selfRecommendations.map((practice) => (
-                  <PracticeCard key={practice.id} practice={practice} />
+                  <PracticeCard
+                    key={practice.id}
+                    practice={practice}
+                    culturalExamples={examplesForPractice(culturalExamples, practice.slug)}
+                  />
                 ))}
               </div>
             </div>
@@ -414,6 +483,34 @@ function AppContent() {
         </Section>
 
         <Section
+          id="examples"
+          eyebrow="Культура как тренажер"
+          title="Юмор в книгах и кино"
+          lead="Это не каталог произведений, а короткие подсказки к упражнениям. Каждый пример показывает прием, психологический механизм и один шаг, который можно попробовать в своей ситуации."
+        >
+          <ExamplesFilters value={exampleFilters} onChange={setExampleFilters} />
+          <div className="examples-summary">
+            <BookOpen size={20} aria-hidden="true" />
+            <span>Найдено примеров: {filteredExamples.length}</span>
+          </div>
+          <div className="examples-grid">
+            {filteredExamples.map((example) => (
+              <CulturalExampleCard
+                key={example.id}
+                example={example}
+                practice={practiceBySlug.get(example.practiceSlug)}
+              />
+            ))}
+          </div>
+          {filteredExamples.length === 0 && (
+            <div className="empty-state">
+              <AlertTriangle size={24} />
+              <p>Для таких фильтров примеров пока нет. Сбросьте один параметр или выберите более широкий прием.</p>
+            </div>
+          )}
+        </Section>
+
+        <Section
           id="practices"
           eyebrow="Каталог"
           title="Практики с фильтрами и ограничениями"
@@ -448,7 +545,11 @@ function AppContent() {
           </div>
           <div className="catalog-grid">
             {catalogResults.map((practice) => (
-              <PracticeCard key={practice.id} practice={practice} />
+              <PracticeCard
+                key={practice.id}
+                practice={practice}
+                culturalExamples={examplesForPractice(culturalExamples, practice.slug)}
+              />
             ))}
           </div>
           {catalogResults.length === 0 && (

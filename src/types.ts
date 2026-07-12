@@ -20,6 +20,7 @@ export type EmotionalState =
   | 'mistakeFear'
   | 'conflict'
   | 'selfCriticism'
+  | 'shame'
   | 'tension'
   | 'loneliness';
 
@@ -33,6 +34,54 @@ export type PracticeGoal =
   | 'restoreResource';
 
 export type Difficulty = 'easy' | 'medium' | 'advanced';
+
+export type CulturalExampleType = 'literature' | 'film';
+
+export type CulturalExampleEra =
+  | 'antiquity'
+  | 'renaissance'
+  | 'eighteenthNineteenth'
+  | 'twentieth'
+  | 'contemporary';
+
+export type CulturalTechnique =
+  | 'irony'
+  | 'selfIrony'
+  | 'absurd'
+  | 'satire'
+  | 'exaggeration'
+  | 'perspectiveShift'
+  | 'kindJoke'
+  | 'defensiveHumor';
+
+export type CulturalTask =
+  | 'anxiety'
+  | 'selfCriticism'
+  | 'shame'
+  | 'conflict'
+  | 'stress'
+  | 'mistakeFear'
+  | 'buildContact'
+  | 'reduceTension';
+
+export type CulturalExample = {
+  id: string;
+  type: CulturalExampleType;
+  title: string;
+  authorOrDirector?: string;
+  yearOrEra: string;
+  era: CulturalExampleEra;
+  technique: CulturalTechnique;
+  task: CulturalTask;
+  relatedTechnique: string;
+  practiceSlug: string;
+  shortContext: string;
+  psychologicalMeaning: string;
+  practiceApplication: string;
+  reflectionQuestion?: string;
+  spoilerLevel?: 'none' | 'minor' | 'significant';
+  sourceReference: string;
+};
 
 export type Practice = {
   id: string;
@@ -51,6 +100,7 @@ export type Practice = {
   contraindications: string[];
   psychologistNotes?: string[];
   sourceReferences?: string[];
+  culturalExamples?: CulturalExample[];
 };
 
 export type HumorStyle =
